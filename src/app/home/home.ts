@@ -857,7 +857,7 @@ export class Home implements AfterViewInit, OnDestroy,OnInit {
         $('#news-flash').vTicker({
           speed: 500,
           pause: 3000,
-          animation: 'fade',
+          animation: 'fade', 
           mousePause: false,
           showItems: 1,
         });
