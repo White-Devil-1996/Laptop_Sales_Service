@@ -1,0 +1,254 @@
+<main class="main">
+  <!-- HERO / SLIDER -->
+  <section class="home-slider position-relative mb-30">
+    <div class="container">
+      <div class="home-slide-cover mt-30">
+        <div class="hero-slider-1 style-4 dot-style-1 dot-style-1-position-1">
+          <div *ngFor="let s of sliders; let i = index" class="single-hero-slider single-animation-wrap" [ngStyle]="{ 'background-image': 'url(' + getImg(s.background) + ')' }" >
+            <div class="slider-content">
+              <h1 class="display-2 mb-40" [innerText]="safeText(s.title)"></h1>
+              <p class="mb-65" [innerText]="safeText(s.subtitle)"></p>
+
+              <form class="form-subcriber d-flex" (submit)="$event.preventDefault()">
+                <input type="email" [placeholder]="s.ctaPlaceholder ?? 'Your email address'" />
+                <button class="btn" type="submit">Subscribe</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="slider-arrow hero-slider-1-arrow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="section-padding pb-5">
+    <div class="container">
+      <div class="section-title wow animate__animated animate__fadeIn carausel-10-columns-cover">
+        <h3>Category Wise Product</h3>
+
+        <ul class="nav nav-tabs links" id="myTab-2" role="tablist" style="margin-top: 20px;display: flex;justify-content: center;">
+          <li class="nav-item" *ngFor="let c of categories; let i = index" role="presentation">
+            <button
+              class="nav-link"
+              [class.active]="i === 0"
+              id="nav-tab-{{ i }}"
+              data-bs-toggle="tab"
+              type="button"
+              role="tab"
+              [attr.aria-selected]="i === 0"
+            >
+              <div class="card-2 wow animate__animated animate__fadeInUp" [attr.data-wow-delay]="(i/10) + 's'">
+                <figure class="img-hover-scale overflow-hidden">
+                  <a href="">
+                    <img [src]="getImg(c.img)" [alt]="c.name ?? 'category'" />
+                  </a>
+                </figure>
+                <h6><a href="">{{ c.name ?? 'Unnamed' }}</a></h6>
+                <span>{{ c.items ?? 0 }} items</span>
+              </div>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="catgy-all">
+        <div class="category-view">View all</div>
+      </div>
+
+      <!-- PRODUCTS TABS -->
+      <div class="row">
+        <div class="col-lg-12 col-md-12 wow animate__animated animate__fadeIn" data-wow-delay=".4s">
+          <div class="tab-content" id="myTabContent-1">
+            <div
+              *ngFor="let tab of ['tab-one-1','tab-two-1','tab-three-1']; let ti = index"
+              class="tab-pane fade"
+              [class.show]="ti === 0"
+              [class.active]="ti === 0"
+              [id]="tab"
+              role="tabpanel"
+            >
+              <div class="carausel-4-columns-cover arrow-center position-relative">
+                <div class="slider-arrow slider-arrow-2 carausel-4-columns-arrow" [id]="'carausel-4-columns-' + ti + '-arrows'"></div>
+                <div class="carausel-4-columns carausel-arrow-center" [id]="'carausel-4-columns-' + ti">
+                  <div class="product-cart-wrap" *ngFor="let p of productsByTab[tab] || []">
+                    <div class="product-img-action-wrap">
+                      <div class="product-img product-img-zoom">
+                        <a href="shop-product-right.html">
+                          <img height="150px" class="default-img" [src]="getImg(p.defaultImg)" [alt]="p.title" />
+                          <img class="hover-img" [src]="getImg(p.hoverImg)" [alt]="p.title + ' hover'" />
+                        </a>
+                      </div>
+
+                      <div class="product-action-1">
+                        <a aria-label="Quick view" class="action-btn small" data-bs-toggle="modal" data-bs-target="#quickViewModal">
+                          <i class="fi-rs-eye"></i>
+                        </a>
+                        <a aria-label="Add To Wishlist" class="action-btn small" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                        <a aria-label="Compare" class="action-btn small" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                      </div>
+
+                      <div class="product-badges product-badges-position product-badges-mrg" *ngIf="p.badge">
+                        <span>{{ p.badge }}</span>
+                      </div>
+                    </div>
+
+                    <div class="product-content-wrap">
+                      <div class="product-category">
+                        <a href="shop-grid-right.html">{{ p.category ?? 'Uncategorized' }}</a>
+                      </div>
+                      <h2><a href="shop-product-right.html">{{ p.title ?? 'Untitled Product' }}</a></h2>
+
+                      <div class="product-rate d-inline-block">
+                        <ng-container *ngFor="let s of filledStars(p.rating)"><span class="star-icon filled">★</span></ng-container>
+                        <ng-container *ngFor="let s of emptyStars(p.rating)"><span class="star-icon">★</span></ng-container>
+                      </div>
+
+                      <div class="product-price mt-10">
+                        <span>₹{{ p.price ?? '—' }}</span>
+                        <span class="old-price" *ngIf="p.oldPrice">₹{{ p.oldPrice }}</span>
+                      </div>
+
+                      <div class="sold mt-15 mb-15" *ngIf="p.sold">
+                        <div class="progress mb-5">
+                          <div
+                            class="progress-bar"
+                            role="progressbar"
+                            [style.width]="( (p.sold.sold ?? 0) / (p.sold.total ?? 1) * 100 ) + '%'"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                          ></div>
+                        </div>
+                        <span class="font-xs text-heading"> Sold: {{ p.sold.sold ?? 0 }}/{{ p.sold.total ?? 0 }}</span>
+                      </div>
+
+                      <a href="shop-cart.html" class="btn category-wise w-100"><i class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                    </div>
+                  </div>
+                  <!-- End product wrap -->
+                </div>
+              </div>
+            </div>
+            <!-- end tab pane loop -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEALS OF THE DAY -->
+  <section class="section-padding pb-5">
+    <div class="container">
+      <div class="section-title wow animate__animated animate__fadeIn" data-wow-delay="0">
+        <div style="display: flex;justify-content: space-between;">
+          <h3>Deals Of The Day</h3>
+          <a class="show-all" href="shop-grid-right.html">
+            <div class="deals-countdown-wrap">
+              <!-- show global countdown attr of first deal as example -->
+              <div class="deals-countdown" *ngIf="deals.length" [attr.data-countdown]="deals[0].countdown"></div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-6" *ngFor="let d of deals; let di = index">
+          <div class="product-cart-wrap style-2 wow animate__animated animate__fadeInUp" [attr.data-wow-delay]="(di/10) + 's'">
+            <div class="product-img-action-wrap">
+              <div class="product-img">
+                <a href="shop-product-right.html">
+                  <img height="300px" [src]="getImg(d.img)" [alt]="d.title" />
+                </a>
+              </div>
+            </div>
+
+            <div class="product-content-wrap">
+              <div class="deals-content">
+                <h2><a href="shop-product-right.html">{{ d.title }}</a></h2>
+
+                <div class="product-rate-cover">
+                  <div class="product-rate d-inline-block">
+                    <ng-container *ngFor="let s of filledStars(d.rating)"><span class="star-icon filled">★</span></ng-container>
+                    <ng-container *ngFor="let s of emptyStars(d.rating)"><span class="star-icon">★</span></ng-container>
+                  </div>
+                  <span class="font-small ml-5 text-muted"> ({{ d.rating ?? '—' }})</span>
+                </div>
+
+                <div class="product-card-bottom">
+                  <div class="product-price">
+                    <span>₹{{ d.price ?? '—' }}</span>
+                    <span class="old-price" *ngIf="d.oldPrice">₹{{ d.oldPrice }}</span>
+                  </div>
+                  <div class="add-cart">
+                    <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- /row -->
+    </div>
+  </section>
+
+  <!-- BANNERS / FEATURED BRANDS -->
+  <section class="banners mb-25">
+    <div class="container">
+      <div class="section-title wow animate__animated animate__fadeIn" data-wow-delay="0">
+        <h3>Featured Brands</h3>
+      </div>
+      <div class="row carausel-10-columns-cover">
+        <div id="carausel-10-columns" class="carausel-10-columns">
+          <div *ngFor="let b of banners; let bi = index" class="col-lg-4 col-md-6" [style.marginRight.px]="10">
+            <div class="banner-img wow animate__animated animate__fadeInUp" [attr.data-wow-delay]="(bi/10) + 's'">
+              <img [src]="getImg(b.img)" [alt]="b.headline" />
+              <div class="banner-text">
+                <h4 [innerText]="b.headline"></h4>
+                <a [href]="b.link ?? '#'" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SMALL LISTS (Top Selling / Trending / Recently Added / Top Rated) -->
+  <section class="section-padding mb-30">
+    <div class="container">
+      <div class="row">
+        <ng-container *ngFor="let block of [
+            {title:'Top Selling', items: topSelling},
+            {title:'Trending Products', items: trending},
+            {title:'Recently added', items: recentlyAdded},
+            {title:'Top Rated', items: topRated}
+          ]; let bi = index">
+          <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0" [ngClass]="{ 'd-none d-lg-block': bi === 2, 'd-none d-xl-block': bi === 3 }">
+            <h4 class="section-title style-1 mb-30">{{ block.title }}</h4>
+            <div class="product-list-small">
+              <article class="row align-items-center" *ngFor="let it of block.items">
+                <figure class="col-md-4 mb-0">
+                  <a href="shop-product-right.html"><img height="100px" [src]="getImg(it.img)" [alt]="it.title" /></a>
+                </figure>
+                <div class="col-md-8 mb-0">
+                  <h6><a href="shop-product-right.html">{{ it.title }}</a></h6>
+                  <div class="product-rate-cover">
+                    <div class="product-rate d-inline-block">
+                      <ng-container *ngFor="let s of filledStars(it.rating)"><span class="star-icon filled">★</span></ng-container>
+                      <ng-container *ngFor="let s of emptyStars(it.rating)"><span class="star-icon">★</span></ng-container>
+                    </div>
+                    <span class="font-small ml-5 text-muted"> ({{ it.rating ?? '—' }})</span>
+                  </div>
+                  <div class="product-price">
+                    <span>₹{{ it.price ?? '—' }}</span>
+                    <span class="old-price" *ngIf="it.oldPrice">₹{{ it.oldPrice }}</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </section>
+</main>

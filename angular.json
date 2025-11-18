@@ -18,11 +18,35 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": [
               "src/styles.css"
+            ],
+            "scripts": [
+              "src/assets/js/modernizr-3.6.0.min.js",
+              "src/assets/js/jquery-3.6.0.min.js",
+              "src/assets/js/jquery-migrate-3.3.0.min.js",
+              "src/assets/js/bootstrap.bundle.min.js",
+              "src/assets/js/slick.js",
+              "src/assets/js/jquery.syotimer.min.js",
+              "src/assets/js/waypoints.js",
+              "src/assets/js/wow.js",
+              "src/assets/js/jquery-ui.js",
+              "src/assets/js/perfect-scrollbar.js",
+              "src/assets/js/magnific-popup.js",
+              "src/assets/js/select2.min.js",
+              "src/assets/js/counterup.js",
+              "src/assets/js/jquery.countdown.min.js",
+              "src/assets/js/images-loaded.js",
+              "src/assets/js/isotope.js",
+              "src/assets/js/scrollup.js",
+              "src/assets/js/jquery.vticker-min.js",
+              "src/assets/js/jquery.theia.sticky.js",
+              "src/assets/js/jquery.elevatezoom.js",
+              "src/assets/js/shop.js"
             ]
           },
           "configurations": {
