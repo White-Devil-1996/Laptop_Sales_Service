@@ -52,7 +52,7 @@
                         *ngFor="let b of topBanners; let bi = index">
                         <div class="banner-img wow animate__animated animate__fadeInUp"
                             [attr.data-wow-delay]="b.delay ?? 0">
-                            <img [src]="getImg(b.img)" alt="" />
+                            <img height="300px" [src]="getImg(b.img)" alt="" />
                             <div class="banner-text">
                                 <h4 [innerText]="b.headline"></h4>
                                 <a [href]="b.link ?? '#'" class="btn btn-xs">Shop Now <i

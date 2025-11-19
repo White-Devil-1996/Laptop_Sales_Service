@@ -71,10 +71,21 @@ this.featuredPrices = [
 ];
 
 this.topBanners = [
-  { img: 'assets/imgs/banner/banner-1.png', headline: 'Premium Laptops for Work & Gaming', link: 'shop-grid-right.html', delay: 0 },
-  { img: 'assets/imgs/banner/banner-2.png', headline: 'Fast & Reliable Laptop Repair Services', link: 'shop-grid-right.html', delay: 0.2 },
-  { img: 'assets/imgs/banner/banner-3.png', headline: 'Genuine Parts & Accessories Available', link: 'shop-grid-right.html', delay: 0.4 },
-  { img: 'assets/imgs/banner/banner-4.png', headline: 'Upgrade Your Laptop for Better Performance', link: 'shop-grid-right.html', delay: 0.6 },
+  // { img: 'assets/imgs/banner/offer1.jpeg', headline: 'Premium Laptops for Work & Gaming', link: 'shop-grid-right.html', delay: 0 },
+  // { img: 'assets/imgs/banner/offer2.png', headline: 'Fast & Reliable Laptop Repair Services', link: 'shop-grid-right.html', delay: 0.2 },
+  // { img: 'assets/imgs/banner/offer3.webp', headline: 'Genuine Parts & Accessories Available', link: 'shop-grid-right.html', delay: 0.4 },
+  // { img: 'assets/imgs/banner/offer4.jpg', headline: 'Upgrade Your Laptop for Better Performance', link: 'shop-grid-right.html', delay: 0.6 },
+  // { img: 'assets/imgs/banner/offer5.webp', headline: 'Upgrade Your Laptop for Better Performance', link: 'shop-grid-right.html', delay: 0.6 },
+  // { img: 'assets/imgs/banner/offer6.webp', headline: 'Upgrade Your Laptop for Better Performance', link: 'shop-grid-right.html', delay: 0.6 },
+  // { img: 'assets/imgs/banner/offer7.avif', headline: 'Upgrade Your Laptop for Better Performance', link: 'shop-grid-right.html', delay: 0.6 },
+
+   { img: 'assets/imgs/banner/offer1.jpeg', headline: '', link: 'shop-grid-right.html', delay: 0 },
+  { img: 'assets/imgs/banner/offer2.png', headline: '', link: 'shop-grid-right.html', delay: 0.2 },
+  { img: 'assets/imgs/banner/offer3.webp', headline: '', link: 'shop-grid-right.html', delay: 0.4 },
+  { img: 'assets/imgs/banner/offer4.jpg', headline: '', link: 'shop-grid-right.html', delay: 0.6 },
+  { img: 'assets/imgs/banner/offer5.webp', headline: '', link: 'shop-grid-right.html', delay: 0.6 },
+  { img: 'assets/imgs/banner/offer6.webp', headline: '', link: 'shop-grid-right.html', delay: 0.6 },
+  { img: 'assets/imgs/banner/offer7.avif', headline: '', link: 'shop-grid-right.html', delay: 0.6 },
 ];
 
 this.categoryBoxes = [
