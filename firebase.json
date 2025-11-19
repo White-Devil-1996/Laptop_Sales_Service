@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "dist/lapcare/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
